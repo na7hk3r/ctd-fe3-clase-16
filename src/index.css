@@ -1,14 +1,29 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  --font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+  --font-weight-normal: 400;
+  
+  --color-text: rgba(255, 255, 255, 0.87);
+  --color-background: #141414;
+  --color-primary: #ffcc00;
+  --color-primary-hover: #e6b800;
+  --color-muted: #aaaaaa;
+  --color-link-hover: rgb(105, 103, 103);
+  
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+  
+  --spacing-unit: 1rem;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #141414;
 
-  font-synthesis: none;
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,90 +31,160 @@
 }
 
 
-
-
-nav{  
+.navbar {  
   display: flex;
   width: 90vw;
-  padding: 1rem;
+  padding: var(--spacing-unit);
   justify-content: flex-start;
   align-items: center;
+  position: sticky;
+  top: 0;
 }
 
-.logo{
-  width: 80px;
-}
-
-nav > a {
-  margin-left: 1rem;
+.navbar a {
+  margin-left: var(--spacing-unit);
   text-decoration: none;
-  color: #fff;
-}
-nav > a:hover {
-  color: rgb(105, 103, 103);
+  color: var(--color-text);
+  transition: color var(--transition-speed) ease;
 }
 
-h1{
+.navbar a:hover {
+  color: var(--color-link-hover);
+}
+
+h1 {
+  font-size: 2.3rem;
+  color: var(--color-text);
   text-align: center;
+  transition: color var(--transition-speed) ease;
+}
+
+h1:hover {
+  color: var(--color-primary);
   cursor: pointer;
-  transition: all ease 0.5s;
 }
 
-h1:hover{
-  color: rgb(255, 198, 75);
+
+.beer-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-unit);
+  max-height: 75vh;
+  overflow-y: scroll;
+  padding: 2rem;
 }
 
-.card{
+.beer-container{
   display: flex;
-  align-items: center;
   flex-direction: column;
-  text-align: center;
-  border: 1.5px solid white;
-  width: 300px;
-  height: auto;
-  margin: 1rem;
-  transition: all ease 0.3s;
-  cursor: pointer;
-  padding: 0.5rem;
-  
-}
-
-.card:hover{
-  box-shadow: 0px 0px 45px -10px rgba(255, 198, 75, 0.3);
-  border: 0.2px solid white;
-
-}
-
-.card > a{
-  text-decoration: none;
-  color: #fff;
-}
-
-.card > img{
-  height: 200px;
-}
-
-.grid{
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
+  align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
 }
+.beer-container img{
+  height: 30rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #282828;
+  padding: var(--spacing-unit);
+  border-radius: var(--border-radius);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  height: 15rem;
+  object-fit: cover;
+  margin-bottom: var(--spacing-unit);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.card a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color var(--transition-speed) ease;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color var(--transition-speed) ease;
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: var(--color-primary-hover);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-unit);
+  justify-content: center;
+  padding: var(--spacing-unit * 2);
+}
+
+.contact-grid{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-unit * 2);
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .beer-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .card {
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
